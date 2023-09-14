@@ -1,5 +1,6 @@
 package br.com.fabiano.webflux.controller;
 
+import br.com.fabiano.webflux.model.request.UserRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -7,16 +8,16 @@ import reactor.core.publisher.Mono;
 
 public interface UserController {
     @PostMapping
-    ResponseEntity<Mono<Void>> save(@RequestBody UserRquest request);
+    ResponseEntity<Mono<Void>> save(@RequestBody UserRequest request);
 
     @GetMapping(value = "/{id}")
-    ResponseEntity<Mono<UserResponse>> find(@PathVariable String id);
+    ResponseEntity<Mono<UserRequest>> find(@PathVariable String id);
 
     @GetMapping
-    ResponseEntity<Flux<UserResponse>> findAll();
+    ResponseEntity<Flux<UserRequest>> findAll();
 
     @PatchMapping(value = "/{id}")
-    ResponseEntity<Mono<UserResponse>> update(@PathVariable String id, @RequestBody UserRquest request);
+    ResponseEntity<Mono<UserRequest>> update(@PathVariable String id, @RequestBody UserRequest request);
 
     @DeleteMapping(value = "/{id}")
     ResponseEntity<Mono<Void>> delete(@PathVariable String id);
